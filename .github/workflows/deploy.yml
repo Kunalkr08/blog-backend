@@ -31,7 +31,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
-          source: "build/libs/*.jar"
+          source: "build/libs/BlogApp.jar"
           target: "/home/ubuntu/app/myapp.jar"
 
       - name: Restart app on EC2
@@ -42,4 +42,4 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             sudo systemctl restart myapp
-            sudo systemctl status myapp --no-pager
+            sudo systemctl is-active --quiet myapp
