@@ -42,4 +42,5 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             pkill -f 'java -jar' || true
-            nohup java -jar /home/ubuntu/app/*.jar --server.port=9090 > app.log 2>&1 &
+            cd /home/ubuntu/app
+            nohup java -jar *.jar --server.port=9090 > app.log 2>&1 & disown
