@@ -43,4 +43,4 @@ jobs:
           script: |
             pkill -f 'java -jar' || true
             cd /home/ubuntu/app
-            nohup java -jar *.jar --server.port=9090 > app.log 2>&1 & disown
+            nohup java -jar $(ls *.jar | head -n 1) --server.port=9090 > app.log 2>&1 &
