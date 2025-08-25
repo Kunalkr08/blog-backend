@@ -41,6 +41,17 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
           script: |
-            pkill -f 'java -jar' || true
+            echo "Stopping existing app..."
+            pkill -f 'java -jar' || echo "No running app found"
+            sleep 5
+
             cd /home/ubuntu/app
-            nohup java -jar $(ls *.jar | head -n 1) --server.port=9090 > app.log 2>&1 &
+
+            JAR_FILE=$(ls -t *.jar | head -n 1)   # pick latest jar
+            echo "Starting $JAR_FILE..."
+            
+            # Start in fully detached mode
+            setsid java -jar "$JAR_FILE" --server.port=9090 > app.log 2>&1 < /dev/null &
+
+            sleep 2
+            echo "App restarted successfully"
