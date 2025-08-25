@@ -12,4 +12,9 @@ class BlogController {
     fun hello(): String {
         return "Hello from BlogController!"
     }
+
+    @GetMapping("/message")
+    fun message(): String {
+        return "This is a message from the BlogController."
+    }
 }
