@@ -13,3 +13,11 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation(kotlin("stdlib"))
 }
+
+springBoot {
+    mainClass.set("com.example.BlogApp.BlogAppApplicationKt")
+}
+
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
+    mainClass.set("com.example.BlogApp.BlogAppApplicationKt")
+}
