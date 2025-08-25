@@ -26,7 +26,7 @@ jobs:
         run: ./gradlew clean build -x test
 
       - name: Rename JAR for upload
-        run: mv build/libs/*.jar build/libs/myapp.jar
+        run: mv build/libs/BlogApp.jar build/libs/myapp.jar
 
       - name: Upload JAR to EC2
         uses: appleboy/scp-action@v0.1.7
