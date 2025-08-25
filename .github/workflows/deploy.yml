@@ -32,7 +32,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
           source: "build/libs/*.jar"
-          target: "/home/ubuntu/app"
+          target: "/home/ubuntu/app/myapp.jar"
 
       - name: Restart app on EC2
         uses: appleboy/ssh-action@v0.1.8
@@ -41,17 +41,5 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
           script: |
-            echo "Stopping existing app..."
-            pkill -f 'java -jar' || echo "No running app found"
-            sleep 5
-
-            cd /home/ubuntu/app
-
-            JAR_FILE=$(ls -t *.jar | head -n 1)   # pick latest jar
-            echo "Starting $JAR_FILE..."
-            
-            # Start in fully detached mode
-            setsid java -jar "$JAR_FILE" --server.port=9090 > app.log 2>&1 < /dev/null &
-
-            sleep 2
-            echo "App restarted successfully"
+            sudo systemctl restart myapp
+            sudo systemctl status myapp --no-pager
