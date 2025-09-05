@@ -32,7 +32,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.SSH_KEY }}
           source: "build/libs/BlogApp.jar"
-          target: "/home/ubuntu/app/myapp.jar"
+          target: "/home/ubuntu/app/build/libs/"
 
       - name: Restart app on EC2
         uses: appleboy/ssh-action@v0.1.8
