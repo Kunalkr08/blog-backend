@@ -17,4 +17,9 @@ class BlogController {
     fun message(): String {
         return "Hello all how are you."
     }
+
+    @GetMapping("/happy")
+    fun happy(): String {
+        return "Hello cool guys."
+    }
 }
