@@ -15,6 +15,6 @@ class BlogController {
 
     @GetMapping("/message")
     fun message(): String {
-        return "This is a message from the BlogController."
+        return "Hello all how are you."
     }
 }
